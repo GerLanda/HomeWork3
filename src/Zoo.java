@@ -1,12 +1,9 @@
 import animals.*;
-import food.Food;
-import food.Grass;
-import food.Meat;
+import food.*;
 
 import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class Zoo {
 
@@ -28,39 +25,75 @@ public class Zoo {
 
         //Проверки
 
-        Aviary.addAnimal(elephant,aviarySmall);  // Пытаемся положить слона в маленький вальер
-        Aviary.addAnimal(wolf,aviaryPond);       // Волка в бассейн
-        Aviary.addAnimal(fish,aviarySuperBig);   // Рыбу в загон для слона
-        Aviary.addAnimal(duck,aviarySmall);      // Утку в загон для волка
+        Aviary.addAnimal(elephant, aviarySmall);  // Пытаемся положить слона в маленький вальер
+        Aviary.addAnimal(wolf, aviaryPond);       // Волка в бассейн
+        Aviary.addAnimal(fish, aviarySuperBig);   // Рыбу в загон для слона
+        Aviary.addAnimal(duck, aviarySmall);      // Утку в загон для волка
 
         System.out.println();
 
-        Aviary.addAnimal(bear, aviaryBig);       // Медведь хищник
-        Aviary.addAnimal(panda, aviaryBig);      // Панда в вальер уже не попадёт
+        Aviary.addAnimal(bear, aviaryBig);        // Медведь хищник
+        Aviary.addAnimal(panda, aviaryBig);       // Панда в вальер уже не попадёт
 
         Aviary.show(aviaryBig);
 
-        Aviary.deleteAnimal(bear,aviaryBig);     // Убираю хищника
-        Aviary.addAnimal(panda, aviaryBig);      // Кладу травоядную панду
-        Aviary.addAnimal(bear, aviaryBig);       // Хищный медведь уже не может быть помещен в вальер
+        Aviary.deleteAnimal(bear, aviaryBig);     // Убираю хищника
+        Aviary.addAnimal(panda, aviaryBig);       // Кладу травоядную панду
+        Aviary.addAnimal(bear, aviaryBig);        // Хищный медведь уже не может быть помещен в вальер
 
         Aviary.show(aviaryBig);
 
         System.out.println();
 
-        Aviary.addAnimal(fish,aviaryPond);       // Аналогично с плавающими животными, рыба хищник
-        Aviary.addAnimal(duck,aviaryPond);       // Утка травоядное, в пруд уже не попадёт
+        Aviary.addAnimal(fish, aviaryPond);       // Аналогично с плавающими животными, рыба хищник
+        Aviary.addAnimal(duck, aviaryPond);       // Утка травоядное, в пруд уже не попадёт
 
         Aviary.show(aviaryPond);
 
-        Aviary.deleteAnimal(fish,aviaryPond);
-        Aviary.addAnimal(duck,aviaryPond);
-        Aviary.addAnimal(fish,aviaryPond);
+        Aviary.deleteAnimal(fish, aviaryPond);
+        Aviary.addAnimal(duck, aviaryPond);
+        Aviary.addAnimal(fish, aviaryPond);
 
         Aviary.show(aviaryPond);
 
+        Aviary.getValue("Дональд", aviaryPond);
+        Aviary.getValue("Дизайнер", aviaryBig);
 
 
+        //Проверка кормления с эксепшеном
+        System.out.println();
 
+        ArrayList<Animal> animals = new ArrayList<Animal>();
+        animals.add(bear);
+        animals.add(wolf);
+        animals.add(fish);
+        animals.add(duck);
+        animals.add(panda);
+        animals.add(elephant);
+
+        Meat beef = new Beef();
+        Meat chicken = new Chicken();
+        Meat freshFish = new FreshFish();
+        Grass fishFeed = new FishFeed();
+        Grass fruit = new Fruit();
+        Grass bamboo = new Bamboo();
+
+        ArrayList<Food> foods = new ArrayList<Food>();
+        foods.add(beef);
+        foods.add(chicken);
+        foods.add(freshFish);
+        foods.add(fishFeed);
+        foods.add(bamboo);
+        foods.add(fruit);
+
+        try {
+            for (Animal animal : animals) {
+                for (Food food : foods) {
+                    worker.feed(food, animal);
+                }
+            }
+        } catch (WrongFoodException e) {
+            System.out.println("Пойман эксепшн: " + e);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package animals;
 
-import food.Food;
+import food.*;
 
 public class Bear<AviaryType> extends Carnivorus {
 
@@ -10,20 +10,20 @@ public class Bear<AviaryType> extends Carnivorus {
 
     private boolean isAnimalPredator = true;
 
-    public boolean getAnimalStatus(){
+    public boolean getAnimalStatus() {
         return isAnimalPredator;
     }
 
-    public void setAnimalStatus(boolean isAnimalPredator){
+    public void setAnimalStatus(boolean isAnimalPredator) {
         this.isAnimalPredator = isAnimalPredator;
     }
 
     @Override
-    public void eat(Food food) {
-        if (food.isMeat() == true) {
+    public void eat(Food food) throws WrongFoodException {
+        if (food.isMeat() == true && food instanceof Beef || food instanceof Chicken || food instanceof FreshFish) {
             System.out.println("Медведь кушает..., миша доволен...");
         } else {
-            System.out.println("Медведь рычит, кажется эта еда ему не нравится, миша начинает злиться ...");
+            throw new WrongFoodException("Эта еда не входит в рацион питания медведя!");
         }
     }
 }

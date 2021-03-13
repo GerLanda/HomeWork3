@@ -3,5 +3,4 @@ public enum AviaryType {
     BIG,
     SUPER_BIG,
     POND
-
 }

@@ -2,19 +2,19 @@ package animals;
 
 import food.Food;
 
-import java.util.Objects;
+import java.util.*;
 
 abstract public class Animal<AvrialType> {
 
     private String name;
     AvrialType atype;
-    private  boolean isAnimalPredator;
+    private boolean isAnimalPredator;
 
-    public boolean getAnimalStatus(){
+    public boolean getAnimalStatus() {
         return isAnimalPredator;
     }
 
-    public void setAnimalStatus(boolean isAnimalPredator){
+    public void setAnimalStatus(boolean isAnimalPredator) {
         this.isAnimalPredator = isAnimalPredator;
     }
 
@@ -39,7 +39,7 @@ abstract public class Animal<AvrialType> {
         atype = type;
     }
 
-    abstract public void eat(Food food);
+    abstract public void eat(Food food) throws WrongFoodException;
 
     @Override
     public boolean equals(Object o) {

@@ -66,5 +66,7 @@ public class Aviary<T> {
         }
     }
 
-
+    static public void getValue(String value, Aviary aviaryType) {
+        System.out.println(aviaryType.animalAviary.get(value));
+    }
 }

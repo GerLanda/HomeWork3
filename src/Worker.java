@@ -1,4 +1,5 @@
 import animals.Animal;
+import animals.WrongFoodException;
 import food.Food;
 
 public class Worker {
@@ -26,8 +27,8 @@ public class Worker {
         this.status = status;
     }
 
-    public void feed(Food food, Animal animals) {
-        System.out.println("Покормить: " + animals.getName() + " - " + food.name());
+    public void feed(Food food, Animal animals) throws WrongFoodException {
+        System.out.println("Покормить: " + animals.getName() + " - " + food.getName());
         animals.eat(food);
     }
 }

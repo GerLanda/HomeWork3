@@ -1,9 +1,10 @@
 package animals;
 
+import food.Beef;
+import food.Chicken;
 import food.Food;
 
 public class Wolf<AvrialType> extends Carnivorus {
-
 
     public Wolf(String name, AvrialType type) {
         super(name, type);
@@ -21,10 +22,10 @@ public class Wolf<AvrialType> extends Carnivorus {
 
     @Override
     public void eat(Food food) {
-        if (food.isMeat() == true) {
+        if (food.isMeat() == true && food instanceof Beef || food instanceof Chicken) {
             System.out.println("Вууууу, свежее мясо ...");
         } else {
-            System.out.println("Ты бы мне ещё консервных банок притащил...");
+            System.out.println("Эта еда не входит в рацион питания волка");
         }
     }
 }
