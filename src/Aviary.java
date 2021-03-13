@@ -30,7 +30,7 @@ public class Aviary<T> {
 
     private Map<String, Animal> animalAviary = new HashMap<>();
 
-    public void addAnimal(Animal animal, Aviary aviaryType) {
+    static public void addAnimal(Animal animal, Aviary aviaryType) {
 
         if (animal.getAtype() == aviaryType.atype) {
             if (aviaryType.animalAviary.isEmpty()) {
@@ -45,8 +45,7 @@ public class Aviary<T> {
                 if (animal.getAnimalStatus() == aviaryType.forPredators) {
                     aviaryType.animalAviary.put(animal.getName(), animal);
                     System.out.println("Животное помещено в вальер");
-                }
-                else{
+                } else {
                     System.out.println("Этот вальер уже занят другим видом животных");
                 }
             }
@@ -55,11 +54,15 @@ public class Aviary<T> {
         }
     }
 
+    static public void deleteAnimal(Animal animal, Aviary aviaryType) {
+        aviaryType.animalAviary.remove(animal.getName());
+        System.out.println(animal.getName() + " вышел из вальера...");
+    }
 
-
-    public void show(Animal a, Aviary b) {
-        for (Map.Entry<String, Animal> item : animalAviary.entrySet()) {
-            System.out.printf(item.getKey(), item.getValue());
+    static public void show(Aviary aviary) {
+        for (Object key : aviary.animalAviary.keySet()) {
+            System.out.println("Сейчас в вальере " + aviary.getAtype());
+            System.out.println(key);
         }
     }
 

@@ -2,6 +2,8 @@ package animals;
 
 import food.Food;
 
+import java.util.Objects;
+
 abstract public class Animal<AvrialType> {
 
     private String name;
@@ -39,6 +41,18 @@ abstract public class Animal<AvrialType> {
 
     abstract public void eat(Food food);
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal<?> animal = (Animal<?>) o;
+        return isAnimalPredator == animal.isAnimalPredator && Objects.equals(name, animal.name) && Objects.equals(atype, animal.atype);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, atype, isAnimalPredator);
+    }
 }
 
 
